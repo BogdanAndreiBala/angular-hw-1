@@ -1,0 +1,23 @@
+<div class="table-container">
+  <table class="passenger-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Survived</th>
+        <th>Class</th>
+        <th>Name</th>
+        <th>Sex</th>
+        <th>Age</th>
+        <th>SibSp</th>
+        <th>Parch</th>
+        <th>Ticket</th>
+        <th>Fare</th>
+        <th>Cabin</th>
+        <th>Embarked</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr app-passenger-row *ngFor="let passenger of passengers" [passenger]="passenger"></tr>
+    </tbody>
+  </table>
+</div>

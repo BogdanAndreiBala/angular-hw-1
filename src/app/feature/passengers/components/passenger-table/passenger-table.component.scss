@@ -1,0 +1,60 @@
+.table-container {
+  max-height: 80vh;
+  overflow-y: auto;
+  border-bottom: 2px solid #000000;
+}
+
+.passenger-table {
+  width: 100%;
+  border: 2px solid #000000;
+  border-collapse: collapse;
+
+  tr {
+    border: 1px solid #000000;
+    text-align: left;
+  }
+
+  th {
+    background-color: #062e5b;
+    color: #ffffff;
+    padding: 12px;
+    text-align: left;
+  }
+
+  th:nth-child(1) {
+    width: var(--col-id-width);
+  }
+  th:nth-child(2) {
+    width: var(--col-survived-width);
+  }
+  th:nth-child(3) {
+    width: var(--col-pclass-width);
+  }
+  th:nth-child(4) {
+    width: var(--col-name-width);
+  }
+  th:nth-child(5) {
+    width: var(--col-sex-width);
+  }
+  th:nth-child(6) {
+    width: var(--col-age-width);
+  }
+  th:nth-child(7) {
+    width: var(--col-sibsp-width);
+  }
+  th:nth-child(8) {
+    width: var(--col-parch-width);
+  }
+  th:nth-child(9) {
+    width: var(--col-ticket-width);
+  }
+  th:nth-child(10) {
+    width: var(--col-fare-width);
+  }
+  th:nth-child(11) {
+    width: var(--col-cabin-width);
+  }
+  th:nth-child(12) {
+    width: var(--col-embarked-width);
+  }
+}
