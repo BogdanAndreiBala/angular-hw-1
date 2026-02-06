@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PassengerData } from '../../../../shared/models/titanic-data.model';
 import { TITANIC_PASSENGERS } from '../../../../shared/titanic-data';
+import { Subscription } from 'rxjs';
+import { PassengerService } from '../../services/passenger.service';
 
 @Component({
   selector: 'app-passenger-table',
@@ -8,38 +10,48 @@ import { TITANIC_PASSENGERS } from '../../../../shared/titanic-data';
   styleUrl: './passenger-table.component.scss',
   standalone: false,
 })
-export class PassengerTableComponent {
-  public passengers: PassengerData[] = TITANIC_PASSENGERS;
-  public currentPage: number = 1;
-  public itemsPerPage: number = 50;
+export class PassengerTableComponent implements OnInit, OnDestroy {
+  public currentPage!: number;
+  public totalPages!: number;
 
-  get visiblePassengers(): PassengerData[] {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    return this.passengers.slice(startIndex, endIndex);
+  public passengers: PassengerData[] = [];
+  private passengersSubscription: Subscription = new Subscription();
+
+  constructor(private passengerService: PassengerService) {}
+
+  ngOnInit(): void {
+    this.passengersSubscription = this.passengerService.passengers$.subscribe(
+      (data: PassengerData[]) => (this.passengers = data),
+    );
+    this.refresh();
   }
 
-  get totalPages(): number {
-    return Math.ceil(this.passengers.length / this.itemsPerPage);
+  ngOnDestroy(): void {
+    this.passengersSubscription.unsubscribe();
   }
 
-  nextPage(): void {
-    if (this.currentPage + 1 <= this.totalPages) {
-      this.currentPage++;
-    }
+  public handleNextPage() {
+    this.passengerService.nextPage();
+    this.refresh();
   }
 
-  prevPage(): void {
-    if (this.currentPage - 1 >= 1) {
-      this.currentPage--;
-    }
+  public handlePrevPage() {
+    this.passengerService.prevPage();
+    this.refresh();
   }
 
-  firstPage(): void {
-    this.currentPage = 1;
+  public handleFirstPage() {
+    this.passengerService.goToFirstPage();
+    this.refresh();
   }
 
-  lastPage(): void {
-    this.currentPage = this.totalPages;
+  public handleLastPage() {
+    this.passengerService.goToLastPage();
+    this.refresh();
+  }
+
+  private refresh() {
+    this.currentPage = this.passengerService.getCurrentPage();
+    this.totalPages = this.passengerService.getTotalPages();
   }
 }
