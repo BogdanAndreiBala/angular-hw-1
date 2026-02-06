@@ -1,1 +1,7 @@
-<p>passenger-table-navigation works!</p>
+<div class="pagination-buttons">
+  <button (click)="onClickFirst()" [disabled]="currentPage === 1">First</button>
+  <button (click)="onClickPrev()" [disabled]="currentPage === 1">Previous</button>
+  <span>Page {{ currentPage }} of {{ totalPages }}</span>
+  <button (click)="onClickNext()" [disabled]="currentPage === totalPages">Next</button>
+  <button (click)="onClickLast()" [disabled]="currentPage === totalPages">Last</button>
+</div>

@@ -21,11 +21,11 @@
     </tbody>
   </table>
 </div>
-
-<div class="pagination-buttons">
-  <button (click)="handleFirstPage()" [disabled]="currentPage === 1">First</button>
-  <button (click)="handlePrevPage()" [disabled]="currentPage === 1">Previous</button>
-  <span>Page {{ currentPage }} of {{ totalPages }}</span>
-  <button (click)="handleNextPage()" [disabled]="currentPage === totalPages">Next</button>
-  <button (click)="handleLastPage()" [disabled]="currentPage === totalPages">Last</button>
-</div>
+<app-passenger-table-navigation
+  [currentPage]="currentPage"
+  [totalPages]="totalPages"
+  (next)="handleNextPage()"
+  (prev)="handlePrevPage()"
+  (fisrt)="handleFirstPage()"
+  (last)="handleLastPage()"
+></app-passenger-table-navigation>
