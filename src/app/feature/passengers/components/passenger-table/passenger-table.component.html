@@ -20,7 +20,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr app-passenger-row *ngFor="let passenger of passengers" [passenger]="passenger"></tr>
+      <tr
+        app-passenger-row
+        *ngFor="let passenger of passengers"
+        [passenger]="passenger"
+        [routerLink]="['/passenger', passenger.passengerId]"
+      ></tr>
     </tbody>
   </table>
 </div>

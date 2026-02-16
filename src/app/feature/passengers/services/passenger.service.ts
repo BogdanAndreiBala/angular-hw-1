@@ -99,4 +99,8 @@ export class PassengerService {
   public getSortOrder(): SortType {
     return this.currentSortOrder;
   }
+
+  public getPassenger(id: number): PassengerData | undefined {
+    return this.allPassengers.find((p) => p.passengerId === id);
+  }
 }
