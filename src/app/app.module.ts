@@ -16,6 +16,8 @@ import { PassengerTableNavigationComponent } from './feature/passengers/componen
 import { SurvivorPipe } from './shared/pipes/survivor';
 import { NamePipe } from './shared/pipes/name';
 import { CityPipe } from './shared/pipes/city';
+import { PassengerNameHeaderComponent } from './feature/passengers/components/passenger-name-header/passenger-name-header.component';
+import { SortIconPipe } from './shared/pipes/name-sort-icon';
 const routes: Routes = [];
 
 @NgModule({
@@ -25,9 +27,11 @@ const routes: Routes = [];
     PassengerTableComponent,
     PassengerRowComponent,
     PassengerTableNavigationComponent,
+    PassengerNameHeaderComponent,
     SurvivorPipe,
     NamePipe,
     CityPipe,
+    SortIconPipe,
   ],
   imports: [BrowserModule, CommonModule, RouterModule.forRoot(routes)],
   providers: [provideBrowserGlobalErrorListeners(), provideZonelessChangeDetection()],
