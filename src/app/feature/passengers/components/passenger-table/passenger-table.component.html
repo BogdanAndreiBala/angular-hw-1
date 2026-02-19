@@ -1,0 +1,35 @@
+<div class="table-container">
+  <table class="passenger-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Survived</th>
+        <th>Class</th>
+        <th>Name</th>
+        <th>Sex</th>
+        <th>Age</th>
+        <th>SibSp</th>
+        <th>Parch</th>
+        <th>Ticket</th>
+        <th>Fare</th>
+        <th>Cabin</th>
+        <th>Embarked</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        app-passenger-row
+        *ngFor="let passenger of getVisiblePassengers()"
+        [passenger]="passenger"
+      ></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="pagination-buttons">
+  <button (click)="firstPage()" [disabled]="currentPage === 0">First</button>
+  <button (click)="prevPage()" [disabled]="currentPage === 0">Previous</button>
+  <span>Page {{ currentPage + 1 }} of {{ getTotalPages() }}</span>
+  <button (click)="nextPage()" [disabled]="currentPage === getTotalPages() - 1">Next</button>
+  <button (click)="lastPage()" [disabled]="currentPage === getTotalPages() - 1">Last</button>
+</div>
