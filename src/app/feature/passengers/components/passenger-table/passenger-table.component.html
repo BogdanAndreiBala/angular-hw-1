@@ -19,7 +19,7 @@
     <tbody>
       <tr
         app-passenger-row
-        *ngFor="let passenger of visiblePassengers"
+        *ngFor="let passenger of getVisiblePassengers()"
         [passenger]="passenger"
       ></tr>
     </tbody>
@@ -27,9 +27,9 @@
 </div>
 
 <div class="pagination-buttons">
-  <button (click)="firstPage()" [disabled]="currentPage === 1">First</button>
-  <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
-  <span>Page {{ currentPage }} of {{ totalPages }}</span>
-  <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
-  <button (click)="lastPage()" [disabled]="currentPage === totalPages">Last</button>
+  <button (click)="firstPage()" [disabled]="currentPage === 0">First</button>
+  <button (click)="prevPage()" [disabled]="currentPage === 0">Previous</button>
+  <span>Page {{ currentPage + 1 }} of {{ getTotalPages() }}</span>
+  <button (click)="nextPage()" [disabled]="currentPage === getTotalPages() - 1">Next</button>
+  <button (click)="lastPage()" [disabled]="currentPage === getTotalPages() - 1">Last</button>
 </div>

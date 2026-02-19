@@ -13,6 +13,6 @@ export class CityPipe implements PipeTransform {
       return '';
     }
 
-    return this.cityNames[value] || value;
+    return this.cityNames[value] ?? value;
   }
 }

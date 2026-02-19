@@ -10,36 +10,39 @@ import { TITANIC_PASSENGERS } from '../../../../shared/titanic-data';
 })
 export class PassengerTableComponent {
   public passengers: PassengerData[] = TITANIC_PASSENGERS;
-  public currentPage: number = 1;
+  public currentPage: number = 0;
   public itemsPerPage: number = 50;
 
-  get visiblePassengers(): PassengerData[] {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+  public visiblePassengers: PassengerData[] = [];
+  public totalPages: number = 0;
+
+  getVisiblePassengers(): PassengerData[] {
+    const startIndex = this.currentPage * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     return this.passengers.slice(startIndex, endIndex);
   }
 
-  get totalPages(): number {
+  getTotalPages(): number {
     return Math.ceil(this.passengers.length / this.itemsPerPage);
   }
 
   nextPage(): void {
-    if (this.currentPage + 1 <= this.totalPages) {
+    if (this.currentPage < this.getTotalPages() - 1) {
       this.currentPage++;
     }
   }
 
   prevPage(): void {
-    if (this.currentPage - 1 >= 1) {
+    if (this.currentPage >= 1) {
       this.currentPage--;
     }
   }
 
   firstPage(): void {
-    this.currentPage = 1;
+    this.currentPage = 0;
   }
 
   lastPage(): void {
-    this.currentPage = this.totalPages;
+    this.currentPage = this.getTotalPages() - 1;
   }
 }
