@@ -1,5 +1,5 @@
 .table-container {
-  max-height: 80vh;
+  max-height: calc(100vh - 230px);
   overflow-y: auto;
   border-bottom: 2px solid #000000;
 }
