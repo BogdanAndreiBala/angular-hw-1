@@ -1,0 +1,66 @@
+<div class="details-container" *ngIf="passenger; else notFound">
+  <button class="back-btn" (click)="goBack()">Back to Passengers</button>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>{{ passenger.name }}</h2>
+      <span class="badge">Passenger #{{ passenger.passengerId }}</span>
+    </div>
+
+    <div class="card-body">
+      <div class="section">
+        <h3>Personal Information</h3>
+        <div class="row">
+          <div class="item">
+            <label>Survived:</label>
+            <span>{{ passenger.survived | survivor }}</span>
+          </div>
+          <div class="item">
+            <label>Sex:</label>
+            <span>{{ passenger.sex | titlecase }}</span>
+          </div>
+          <div class="item">
+            <label>Age:</label>
+            <span>{{ passenger.age || 'Unknown' }}</span>
+          </div>
+          <div class="item">
+            <label>Class:</label>
+            <span>{{ passenger.pclass }}</span>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="section">
+        <h3>Ticket Information</h3>
+        <div class="row">
+          <div class="item">
+            <label>Ticket Number:</label>
+            <span>{{ passenger.ticket }}</span>
+          </div>
+          <div class="item">
+            <label>Fare:</label>
+            <span>£{{ passenger.fare }}</span>
+          </div>
+          <div class="item">
+            <label>Cabin:</label>
+            <span>{{ passenger.cabin || 'Not Assigned' }}</span>
+          </div>
+          <div class="item">
+            <label>Embarked:</label>
+            <span>{{ passenger.embarked | city }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #notFound>
+  <div class="error-container">
+    <h2>Passenger not found</h2>
+    <p>We couldn't find the passenger you were looking for.</p>
+    <button class="back-btn" (click)="goBack()">Go Back</button>
+  </div>
+</ng-template>
