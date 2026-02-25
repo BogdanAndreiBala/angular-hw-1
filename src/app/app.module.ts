@@ -32,7 +32,9 @@ const routes: Routes = [];
     PassengerTableNavigationComponent,
     PassengerNameHeaderComponent,
     PassengerDetailsComponent,
+
     SideBarNavComponent,
+
     SurvivorPipe,
     NamePipe,
     CityPipe,

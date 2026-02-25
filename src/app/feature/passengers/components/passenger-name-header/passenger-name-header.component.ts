@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { SortType } from '../../services/passenger.service';
+
+import { PassengerService, SortType } from '../../services/passenger.service';
 
 @Component({
   selector: 'app-passenger-name-header',
@@ -8,10 +9,11 @@ import { SortType } from '../../services/passenger.service';
   standalone: false,
 })
 export class PassengerNameHeaderComponent {
-  @Input() public sortOrder: SortType = 'NONE';
-  @Output() public sort = new EventEmitter<void>();
+  sortOrder!: SortType;
+  constructor(private passengerService: PassengerService) {}
 
   public onSortClick(): void {
-    this.sort.emit();
+    this.passengerService.nameSort();
+    this.sortOrder = this.passengerService.getSortOrder();
   }
 }

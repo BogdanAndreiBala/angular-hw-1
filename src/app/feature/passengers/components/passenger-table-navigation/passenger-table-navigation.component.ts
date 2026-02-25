@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, Output, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PassengerService } from '../../services/passenger.service';
 import { Subscription } from 'rxjs';
 

@@ -7,11 +7,13 @@ import { PassengerDetailsComponent } from './feature/passengers/components/passe
 const routes: Routes = [
   { path: '', component: PassengerTableComponent },
   { path: 'passenger/:id', component: PassengerDetailsComponent },
+
   {
     path: 'statistics',
     loadChildren: () =>
       import('./feature/passengers/statistics/statistics-module').then((m) => m.StatisticsModule),
   },
+
   { path: '**', redirectTo: '' },
 ];
 

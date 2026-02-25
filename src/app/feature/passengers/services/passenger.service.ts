@@ -23,6 +23,7 @@ export class PassengerService {
   public passengers$: Observable<PassengerData[]> = this.passengersSubject.asObservable();
   public currentPage$: Observable<number> = this.currentPageSubject.asObservable();
   public totalPages$: Observable<number> = this.totalPagesSubject.asObservable();
+
   constructor() {
     this.updateState();
   }
