@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { PassengerService } from '../../services/passenger.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-passenger-table-navigation',
@@ -6,28 +8,42 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './passenger-table-navigation.component.scss',
   standalone: false,
 })
-export class PassengerTableNavigationComponent {
-  @Input() public currentPage!: number;
-  @Input() public totalPages!: number;
+export class PassengerTableNavigationComponent implements OnInit, OnDestroy {
+  public currentPage!: number;
+  public totalPages!: number;
 
-  @Output() public fisrt = new EventEmitter<void>();
-  @Output() public last = new EventEmitter<void>();
-  @Output() public next = new EventEmitter<void>();
-  @Output() public prev = new EventEmitter<void>();
+  private currentPageSubs: Subscription = new Subscription();
+  private totalPagesSubs: Subscription = new Subscription();
+
+  constructor(private passengerService: PassengerService) {}
+
+  ngOnInit(): void {
+    this.currentPageSubs = this.passengerService.currentPage$.subscribe(
+      (page: number) => (this.currentPage = page),
+    );
+    this.totalPagesSubs = this.passengerService.totalPages$.subscribe(
+      (total: number) => (this.totalPages = total),
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.currentPageSubs.unsubscribe;
+    this.totalPagesSubs.unsubscribe;
+  }
 
   public onClickNext() {
-    this.next.emit();
+    this.passengerService.nextPage();
   }
 
   public onClickPrev() {
-    this.prev.emit();
+    this.passengerService.prevPage();
   }
 
   public onClickFirst() {
-    this.fisrt.emit();
+    this.passengerService.goToFirstPage();
   }
 
   public onClickLast() {
-    this.last.emit();
+    this.passengerService.goToLastPage();
   }
 }

@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+
 import { PassengerService, SortType } from '../../services/passenger.service';
 
 @Component({

@@ -15,10 +15,14 @@ export class PassengerService {
   private currentPage: number = FIRST_PAGE;
   private itemsPerPage: number = ITEMS_PER_PAGE;
   private passengersSubject = new BehaviorSubject<PassengerData[]>([]);
+  private currentPageSubject = new BehaviorSubject<number>(this.currentPage);
+  private totalPagesSubject = new BehaviorSubject<number>(this.getTotalPages());
 
   private currentSortOrder: SortType = 'NONE';
 
   public passengers$: Observable<PassengerData[]> = this.passengersSubject.asObservable();
+  public currentPage$: Observable<number> = this.currentPageSubject.asObservable();
+  public totalPages$: Observable<number> = this.totalPagesSubject.asObservable();
 
   constructor() {
     this.updateState();
@@ -61,6 +65,8 @@ export class PassengerService {
     const endIndex: number = startIndex + this.itemsPerPage;
     const pageData: PassengerData[] = this.allPassengers.slice(startIndex, endIndex);
     this.passengersSubject.next(pageData);
+    this.currentPageSubject.next(this.currentPage);
+    this.totalPagesSubject.next(this.getTotalPages());
   }
 
   public nameSort(): void {

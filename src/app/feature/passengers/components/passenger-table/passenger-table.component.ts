@@ -11,8 +11,6 @@ import { PassengerService, SortType } from '../../services/passenger.service';
   standalone: false,
 })
 export class PassengerTableComponent implements OnInit, OnDestroy {
-  public currentPage!: number;
-  public totalPages!: number;
   public currentSortOrder: SortType = 'NONE';
 
   public passengers: PassengerData[] = [];
@@ -31,29 +29,12 @@ export class PassengerTableComponent implements OnInit, OnDestroy {
     this.passengersSubscription.unsubscribe();
   }
 
-  public handleNextPage() {
-    this.passengerService.nextPage();
-    this.refresh();
-  }
-
-  public handlePrevPage() {
-    this.passengerService.prevPage();
-    this.refresh();
-  }
-
-  public handleFirstPage() {
-    this.passengerService.goToFirstPage();
-    this.refresh();
-  }
-
-  public handleLastPage() {
-    this.passengerService.goToLastPage();
+  public handleSort() {
+    this.passengerService.nameSort();
     this.refresh();
   }
 
   private refresh() {
-    this.currentPage = this.passengerService.getCurrentPage();
-    this.totalPages = this.passengerService.getTotalPages();
     this.currentSortOrder = this.passengerService.getSortOrder();
   }
 }

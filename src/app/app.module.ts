@@ -14,6 +14,7 @@ import { PassengerRowComponent } from './feature/passengers/components/passenger
 import { PassengerTableComponent } from './feature/passengers/components/passenger-table/passenger-table.component';
 import { PassengerTableNavigationComponent } from './feature/passengers/components/passenger-table-navigation/passenger-table-navigation.component';
 import { PassengerDetailsComponent } from './feature/passengers/components/passenger-details/passenger-details.component';
+import { SideBarNavComponent } from './feature/passengers/components/side-bar-nav/side-bar-nav.component';
 
 import { SurvivorPipe } from './shared/pipes/survivor';
 import { NamePipe } from './shared/pipes/name';
@@ -31,6 +32,9 @@ const routes: Routes = [];
     PassengerTableNavigationComponent,
     PassengerNameHeaderComponent,
     PassengerDetailsComponent,
+
+    SideBarNavComponent,
+
     SurvivorPipe,
     NamePipe,
     CityPipe,

@@ -1,0 +1,36 @@
+<div class="statistics-container">
+  <h1>Titanic Statistics</h1>
+  <section>
+    <h2 class="section-header">General Overview</h2>
+    <div class="stats-grid">
+      <app-statistics-card
+        *ngFor="let stat of generalStats"
+        [title]="stat.label"
+        [value]="stat.value"
+      >
+      </app-statistics-card>
+    </div>
+  </section>
+  <section>
+    <h2 class="section-header">Gender Statistics</h2>
+    <div class="stats-grid">
+      <app-statistics-card
+        *ngFor="let stat of genderStats"
+        [title]="stat.label"
+        [value]="stat.value"
+      >
+      </app-statistics-card>
+    </div>
+  </section>
+  <section>
+    <h2 class="section-header">Class Statistics</h2>
+    <div class="stats-grid">
+      <app-statistics-card
+        *ngFor="let stat of classStats"
+        [title]="stat.label"
+        [value]="stat.value"
+      >
+      </app-statistics-card>
+    </div>
+  </section>
+</div>

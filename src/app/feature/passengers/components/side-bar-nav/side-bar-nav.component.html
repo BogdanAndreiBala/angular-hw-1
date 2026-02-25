@@ -1,0 +1,21 @@
+<aside class="sidebar" [class.open]="isSidebarOpen">
+  <div class="sidebar-header">
+    <h2>Titanic App</h2>
+  </div>
+
+  <nav class="nav-list">
+    <div
+      class="nav-item"
+      *ngFor="let item of navItems"
+      [routerLink]="item.route"
+      routerLinkActive="selected"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="toggleSidebar()"
+    >
+      <span class="nav-icon">{{ item.icon }}</span>
+      <span class="nav-label">{{ item.label }}</span>
+    </div>
+  </nav>
+</aside>
+
+<div class="backdrop" *ngIf="isSidebarOpen" (click)="toggleSidebar()"></div>
